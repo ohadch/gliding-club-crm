@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { CommonModule } from "@angular/common";
 import { RolesPageModule } from "./roles-page/roles-page.module";
-import { HomePageModule } from "./home-page/home-page.module";
 import { MembersPageModule } from "./members-page/members-page.module";
 import { ActionsPageModule } from "./actions-page/actions-page.module";
 import { DutiesPageModule } from "./duties-page/duties-page.module";
@@ -48,7 +47,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ActionsPageModule,
     DutiesPageModule,
-    HomePageModule,
     MemberPreferencesPageModule,
     MembersPageModule,
     RolesPageModule,
