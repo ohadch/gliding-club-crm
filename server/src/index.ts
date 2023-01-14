@@ -9,8 +9,6 @@ import {ApolloServer} from 'apollo-server-express';
 import AdminBro from 'admin-bro';
 import AdminBroExpress from '@admin-bro/express';
 import {Database, Resource} from '@admin-bro/typeorm';
-import jwt from 'express-jwt';
-import jwks from 'jwks-rsa';
 import {Member, MemberResolver} from './models/Member';
 import {Shift, ShiftResolver} from './models/Shift';
 import {MemberPreference, MemberPreferenceResolver} from './models/MemberPreference';
@@ -25,8 +23,9 @@ import {
     DB_PASSWORD,
     DB_NAME,
     DB_HOST,
-    DB_PORT,
+    DB_PORT, CREATE_SEED_DATA,
 } from './config'
+import {createSeedData} from "./services/seed";
 
 const log = getLogger('server');
 
@@ -98,6 +97,11 @@ async function main() {
         playground: true,
     });
     app.use(apolloServer.getMiddleware({path: GRAPHQL_ENDPOINT}));
+
+    // Create seed data if needed
+    if (CREATE_SEED_DATA) {
+        await createSeedData();
+    }
 
     app.listen({port: PORT}, () => {
         const url = `http://localhost:${PORT}`;

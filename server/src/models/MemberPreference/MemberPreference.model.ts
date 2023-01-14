@@ -6,12 +6,8 @@ import { Member } from '../Member';
 import BaseModel from "../__abstract__/BaseModel";
 import {MemberAssignmentPreferenceType} from "../../@types/enums";
 import {Duty} from "../Duty";
-import * as Moment from 'moment';
-
-import { extendMoment } from 'moment-range';
 import {Shift} from "../Shift";
-
-const moment = extendMoment(Moment);
+import {areTwoDatesTheSameDay, isDateInRange} from "../../services/utils/date.utils";
 
 export const MEMBER_PREFERENCE_RELATIONS = [
   'member',
@@ -33,15 +29,15 @@ export class MemberPreference extends BaseModel {
 
     @RelationId((memberPreference: MemberPreference) => memberPreference.otherMember)
     @Column({ nullable: true })
-    otherMemberId: number;
+    otherMemberId?: number;
 
     @Field(() => Date, { nullable: true })
     @Column({ nullable: true })
-    startDate: Date;
+    startDate?: Date;
 
     @Field(() => Date, { nullable: true })
     @Column({ nullable: true })
-    endDate: Date;
+    endDate?: Date;
 
     @Field(() => Member, { nullable: true })
     @ManyToOne(() => Member, (member) => member.preferences)
@@ -51,12 +47,11 @@ export class MemberPreference extends BaseModel {
     @Field(() => Member, { nullable: true })
     @ManyToOne(() => Member, (member) => member.preferencesAsOtherMember)
     @JoinColumn({ name: 'otherMemberId' })
-    otherMember: Member;
+    otherMember?: Member;
 
     @Field(() => MemberAssignmentPreferenceType)
     @Column()
     type: string;
-
 
     public isApplicableToDuty(duty: Duty) {
         return this.isApplicableToShift(duty.shift)
@@ -64,11 +59,11 @@ export class MemberPreference extends BaseModel {
 
     public isApplicableToShift(shift: Shift) {
         if (this.startDate && this.endDate) {
-            return moment.range(moment(this.startDate), moment(this.endDate)).contains(shift.action.date)
+            return isDateInRange(shift.action.date, this.startDate, this.endDate)
         }
 
         if (this.startDate) {
-            return moment(this.startDate).isSame(shift.action.date, "day")
+            return areTwoDatesTheSameDay(this.startDate, shift.action.date)
         }
 
         return true

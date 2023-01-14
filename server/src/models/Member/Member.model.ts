@@ -2,11 +2,11 @@ import {
   Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
-import moment from 'moment';
 import { Role } from '../Role';
 import { Duty } from '../Duty';
 import { MemberPreference } from '../MemberPreference';
 import BaseModel from "../__abstract__/BaseModel";
+import {getDaysDiff} from "../../services/utils/date.utils";
 
 export const MEMBER_RELATIONS = [
   'roles',
@@ -79,7 +79,7 @@ export class Member extends BaseModel {
       return DAYS_DIFF_WITH_CLOSEST_DUTY_IN_CASE_MEMBER_IS_NOT_ASSIGNED_AT_ALL;
     }
 
-    const daysDiffs = duties.map((duty) => Math.abs(moment(date).diff(duty.shift.action.date, 'days')));
+    const daysDiffs = duties.map(duty => getDaysDiff(date, duty.shift.action.date));
 
     return Math.min(
       ...daysDiffs,
