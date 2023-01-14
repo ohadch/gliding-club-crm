@@ -1,7 +1,6 @@
 {
     "GREET": "שלום {{given_name}}",
     "LOGOUT": "התנתק",
-    "LOGIN": "התחבר",
     "ID": "מזהה",
     "CONFIRM": "אישור",
     "CANCEL": "ביטול",

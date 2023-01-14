@@ -3,7 +3,6 @@
     <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
     <h1 [routerLink]="'/'" class="example-app-name">{{ 'APP_BAR_TITLE' | translate }}</h1>
     <span class="spacer"></span>
-    <auth-button align="end"></auth-button>
   </mat-toolbar>
   <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">

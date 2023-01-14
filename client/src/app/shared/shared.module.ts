@@ -22,7 +22,6 @@ import { CreateMemberPreferenceDialogComponent } from "./components/create-membe
 import { MatButtonModule } from "@angular/material/button";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { MemberDutiesChartComponent } from "./components/member-duties-chart/member-duties-chart.component";
-import { AuthButtonComponent } from './components/auth-button/auth-button.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PaginationButtonsComponent } from './components/pagination-buttons/pagination-buttons.component';
 import {MatIconModule} from "@angular/material/icon";
@@ -44,7 +43,6 @@ import { MembersAutocompleteComponent } from './components/members-autocomplete/
     DutyNamePipe,
     RoleLoadDistributionChartComponent,
     MemberDutiesChartComponent,
-    AuthButtonComponent,
     PaginationButtonsComponent,
     MembersAutocompleteComponent,
   ],
@@ -77,7 +75,6 @@ import { MembersAutocompleteComponent } from './components/members-autocomplete/
     DutyNamePipe,
     RoleLoadDistributionChartComponent,
     MemberDutiesChartComponent,
-    AuthButtonComponent,
     TranslateModule,
     PaginationButtonsComponent,
   ],

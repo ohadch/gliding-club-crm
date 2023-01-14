@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
 import { MATERIAL_SANITY_CHECKS } from "@angular/material/core";
@@ -27,7 +27,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MemberDetailsPageModule } from "./member-details-page/member-details-page.module";
-import { AuthModule, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -60,19 +59,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MatToolbarModule,
     MatButtonModule,
     MemberDetailsPageModule,
-    AuthModule.forRoot({
-      domain: 'dev-wpwqa405.us.auth0.com',
-      clientId: 'G7qfITfJuYqeBPhmwgZ3ugB9rGVi4lHD',
-      audience: 'http://localhost',
-      // Specify configuration for the interceptor.
-      httpInterceptor: {
-        allowedList: [
-          { uri: 'http://localhost:4000/*' }
-        ]
-      }
-    }),
     TranslateModule.forRoot({
-      defaultLanguage: 'he',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: (httpClient: HttpClient) => new TranslateHttpLoader(httpClient),
@@ -84,14 +72,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     {
       provide: MATERIAL_SANITY_CHECKS,
       useValue: false
-    },
-    // Auth0 interceptor provider (adds auth header to backend http calls).
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor,
-      multi: true,
-    },
-
+    }
   ],
   bootstrap: [AppComponent]
 })

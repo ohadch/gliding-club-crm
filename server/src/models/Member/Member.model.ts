@@ -38,11 +38,6 @@ export class Member extends BaseModel {
   @Column()
   email: string;
 
-  // Auth0 user id, related to this member.
-  @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
-  authId: string;
-
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
   mobilePhone: string;
