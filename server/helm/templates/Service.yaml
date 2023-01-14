@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gliding-club-crm-server
+  name: gliding-club-crm-server
+spec:
+  type: LoadBalancer
+  ports:
+      - protocol: TCP
+        port: 4001
+        targetPort: 4000
+  selector:
+    app: gliding-club-crm-server
+status:
+  loadBalancer: {}

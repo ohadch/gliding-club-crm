@@ -1,0 +1,25 @@
+<div class="page">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+    <h1 [routerLink]="'/'" class="example-app-name">{{ 'APP_BAR_TITLE' | translate }}</h1>
+    <span class="spacer"></span>
+    <auth-button align="end"></auth-button>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+      <mat-nav-list>
+        <a routerLinkActive="router-link-active" mat-list-item *ngFor="let item of menuItems" [routerLink]="item.to">
+          <span class="full-width" *ngIf="isExpanded || isShowing">{{ item.name | translate }}</span>
+          <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="example-sidenav-content container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-container>
+</div>

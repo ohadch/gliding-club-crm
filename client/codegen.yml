@@ -1,0 +1,7 @@
+generates:
+  types.ts:
+    config:
+      scalars:
+        Date: "my-file#MyType"
+    plugins:
+      - typescript

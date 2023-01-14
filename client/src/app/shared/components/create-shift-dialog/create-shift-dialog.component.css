@@ -1,0 +1,7 @@
+input {
+  width: 100%;
+}
+
+::ng-deep .ngx-mat-timepicker-table {
+  direction: ltr;
+}

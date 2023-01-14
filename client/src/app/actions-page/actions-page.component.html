@@ -1,0 +1,7 @@
+<div class="toolbar">
+  <h1>{{ 'ACTION_DAYS' | translate }}</h1>
+</div>
+
+<app-actions-page-actions-table [actions]="actions"></app-actions-page-actions-table>
+
+<app-pagination-buttons [page]="page" (pageUpdated)="pageUpdated($event)"></app-pagination-buttons>

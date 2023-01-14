@@ -1,0 +1,21 @@
+<div class="toolbar">
+  <h1>{{ 'SHIFTS' | translate }}</h1>
+  <div class="buttons-container">
+    <button mat-flat-button color="primary" (click)="openCreateShiftDialog()">
+      <mat-icon>
+        add
+      </mat-icon>
+      {{ 'ADD_SHIFT' | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="automaticallyCreateShiftsForActions()">
+      {{ 'AUTOMATICALLY_CREATE_SHIFTS_FOR_ACTIONS' | translate }}
+    </button>
+  </div>
+</div>
+
+
+<app-shifts-page-shifts-table [shifts]="shifts"
+                              (shiftDeletedEvent)="deleteShift($event)"></app-shifts-page-shifts-table>
+
+
+<app-pagination-buttons [page]="page" (pageUpdated)="pageUpdated($event)"></app-pagination-buttons>

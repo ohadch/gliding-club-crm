@@ -1,0 +1,48 @@
+.page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  padding: 0.2em 1em 0 1em;
+}
+
+.example-app-name {
+  cursor: pointer;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-container {
+  height: 100%;
+}
+.example-sidenav-content {
+  height: 92.8vh;
+  overflow: scroll;
+}
+
+.example-sidenav {
+  user-select: none;
+}
+
+.full-width {
+  width: 100%;
+}
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+
+.router-link-active {
+  color: blue;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

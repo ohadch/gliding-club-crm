@@ -1,0 +1,5 @@
+<div *ngIf="member">
+  <h1>{{ 'MEMBER_DETAILS' | translate }}: {{ member.fullName }}</h1>
+
+  <app-member-duties-chart *ngIf="member.duties" [duties]="member.duties"></app-member-duties-chart>
+</div>

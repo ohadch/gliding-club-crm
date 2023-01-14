@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>{{ title | translate:lastName }}</h2>
+
+<mat-dialog-content class="inputs-container">
+
+  <mat-form-field>
+    <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
+    <input
+      name="first-name"
+      type="text"
+      [placeholder]="'FIRST_NAME' | translate"
+      matInput
+      [formControl]="firstName"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
+    <input
+      name="last-name"
+      type="text"
+      [placeholder]="'LAST_NAME' | translate"
+      matInput
+      [formControl]="lastName"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+    <input
+      name="email"
+      type="text"
+      [placeholder]="'EMAIL' | translate"
+      matInput
+      [formControl]="email"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>{{ 'ROLES' | translate }}</mat-label>
+    <mat-chip-list #chipList aria-label="roles-selection">
+      <mat-chip
+        *ngFor="let role of roles"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="removeRole(role)">
+        {{ role.name }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="{{ 'ROLE' | translate }}"
+        #roleInput
+        [formControl]="rolesCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addRole($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedRole($event)" [displayWith]="roleDisplayFn">
+      <mat-option *ngFor="let role of filteredRoles | async" [value]="role">
+        {{role.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+  <button [disabled]="!isValid" mat-button (click)="confirm()" cdkFocusInitial>{{ 'CONFIRM' | translate }}</button>
+</mat-dialog-actions>

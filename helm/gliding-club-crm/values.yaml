@@ -1,0 +1,15 @@
+postgresql:
+  auth:
+    postgresPassword: postgres
+    username: postgres
+    enablePostgresUser: true
+    database: postgres
+
+gliding-club-crm-server:
+  env:
+    NODE_ENV: development
+    DB_TYPE: postgres
+    DB_HOST: gliding-club-crm-postgresql.gliding-club-crm.svc.cluster.local
+    DB_NAME: postgres
+    DB_USER: postgres
+    DB_PASSWORD: postgres

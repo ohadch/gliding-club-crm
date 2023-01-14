@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ 'ADD_MEMBER_PREFERENCE' | translate }}</h2>
+
+<mat-dialog-content class="inputs-container">
+
+  <app-members-autocomplete (selected)="onMemberSelected($event)"></app-members-autocomplete>
+
+  <mat-form-field>
+    <mat-label>{{ 'MEMBER_PREFERENCE_TYPE' | translate }}</mat-label>
+    <input
+      name="shift"
+      type="text"
+      [placeholder]="'MEMBER_PREFERENCE_TYPE' | translate"
+      matInput
+      [formControl]="memberPreferenceType"
+      [matAutocomplete]="templateDataSourceMemberPreferenceType">
+    <mat-autocomplete #templateDataSourceMemberPreferenceType="matAutocomplete" [displayWith]="memberPreferenceTypeDisplayFn">
+      <mat-option
+        *ngFor="let option of filteredMemberPreferenceTypes | async"
+        [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="renderDateRange" appearance="fill">
+    <mat-label>{{ 'DATE_RANGE' | translate }}</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date">
+      <input matEndDate formControlName="end" placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+  </mat-form-field>
+
+  <app-members-autocomplete *ngIf="renderOtherMember" (selected)="onOtherMemberSelected($event)"></app-members-autocomplete>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+  <button [disabled]="!isValid" mat-button (click)="confirm()" cdkFocusInitial>{{ 'CONFIRM' | translate }}</button>
+</mat-dialog-actions>

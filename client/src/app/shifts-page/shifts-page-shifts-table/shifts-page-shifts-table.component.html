@@ -1,0 +1,47 @@
+<table mat-table [dataSource]="shifts" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>{{ 'ID' | translate }}</th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>{{ 'SHIFT' | translate }}</th>
+    <td mat-cell *matCellDef="let element"> {{element | shiftName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="assignedDuties">
+    <th mat-header-cell *matHeaderCellDef>{{ 'ASSIGNED_DUTIES' | translate }}</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-chip-list aria-label="Assigned duties">
+        <mat-chip [matTooltip]="(duty.role && duty.role.name) || ''" *ngFor="let duty of (element.duties | assignedDuties)">{{ duty.member && duty.member.fullName }}</mat-chip>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="unassignedDuties">
+    <th mat-header-cell *matHeaderCellDef>{{ 'UNASSIGNED_DUTIES' | translate }}</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-chip-list aria-label="Unassigned duties">
+        <mat-chip *ngFor="let duty of (element.duties | unassignedDuties)">{{ duty.role && duty.role.name }}</mat-chip>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="deleteShift(element)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

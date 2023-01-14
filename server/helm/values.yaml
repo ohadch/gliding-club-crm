@@ -1,0 +1,6 @@
+image:
+  repository: localhost:5001/gliding-club-crm-server
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: []

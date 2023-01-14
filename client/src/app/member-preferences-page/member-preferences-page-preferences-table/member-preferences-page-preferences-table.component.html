@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>{{ 'ID' | translate }}</th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="member">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEMBER' | translate }}</th>
+    <td mat-cell *matCellDef="let element"> {{element.member.fullName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEMBER_PREFERENCE_TYPE' | translate }}</th>
+    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="otherMember">
+    <th mat-header-cell *matHeaderCellDef>{{ 'OTHER_MEMBER' | translate }}</th>
+    <td mat-cell *matCellDef="let element"> {{element.otherMember && element.otherMember.fullName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="startDate">
+    <th mat-header-cell *matHeaderCellDef>{{ 'START_DATE' | translate }}</th>
+    <td mat-cell *matCellDef="let element">{{ element.startDate | date: "dd/MM/yyyy" }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="endDate">
+    <th mat-header-cell *matHeaderCellDef>{{ 'END_DATE' | translate }}</th>
+    <td mat-cell *matCellDef="let element">{{ element.endDate | date: "dd/MM/yyyy" }}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="deletePreference(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

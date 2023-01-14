@@ -1,0 +1,15 @@
+<div class="toolbar">
+  <h1>{{ 'MEMBER_PREFERENCES' | translate }}</h1>
+  <button mat-flat-button color="primary" (click)="openCreateMemberPreferenceDialog()">
+    <mat-icon>
+      add
+    </mat-icon>
+    {{ 'ADD_MEMBER_PREFERENCE' | translate }}
+  </button>
+</div>
+
+
+<app-member-preferences-page-preferences-table
+  [preferences]="preferences"
+  (preferenceDeletedEvent)="onMemberPreferenceDeleted($event)"
+></app-member-preferences-page-preferences-table>

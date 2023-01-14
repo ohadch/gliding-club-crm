@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content class="inputs-container">
+
+  <mat-form-field>
+    <mat-label>{{ 'ACTION_DAY' | translate }}</mat-label>
+    <input
+      name="shift"
+      type="text"
+      [placeholder]="'ACTION)DAY' | translate"
+      matInput
+      [formControl]="action"
+      [matAutocomplete]="templateDataSourceAction">
+    <mat-autocomplete #templateDataSourceAction="matAutocomplete" [displayWith]="actionDisplayFn">
+      <mat-option
+        *ngFor="let option of filteredActions | async"
+        [value]="option">
+        {{option | actionName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'SHIFT_TYPE' | translate }}</mat-label>
+    <input
+      name="shift"
+      type="text"
+      [placeholder]="'SHIFT_TYPE' | translate"
+      matInput
+      [formControl]="shiftType"
+      [matAutocomplete]="templateDataSourceShiftType">
+    <mat-autocomplete #templateDataSourceShiftType="matAutocomplete" [displayWith]="shiftTypeDisplayFn">
+      <mat-option
+        *ngFor="let option of filteredShiftTypes | async"
+        [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+  <button [disabled]="!isValid" mat-button (click)="confirm()" cdkFocusInitial>{{ 'CONFIRM' | translate }}</button>
+</mat-dialog-actions>

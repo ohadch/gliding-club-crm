@@ -1,0 +1,17 @@
+<mat-card class="container">
+    <button [disabled]="page === 1" mat-button (click)="onDecrement()">
+      <mat-icon>
+        arrow_right
+      </mat-icon>
+    </button>
+
+    <button mat-button>
+      {{ page }}
+    </button>
+
+    <button mat-button (click)="onIncrement()">
+      <mat-icon>
+        arrow_left
+      </mat-icon>
+    </button>
+</mat-card>

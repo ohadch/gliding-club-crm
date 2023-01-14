@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gliding-club-crm-client
+  labels:
+      app: gliding-club-crm-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gliding-club-crm-client
+  template:
+    metadata:
+      labels:
+        app: gliding-club-crm-client
+    spec:
+      containers:
+      - name: gliding-club-crm-client
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 3000

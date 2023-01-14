@@ -1,0 +1,15 @@
+<div class="toolbar">
+  <h1>{{ 'MEMBERS' | translate }}</h1>
+  <button mat-flat-button color="primary" (click)="openCreateOrUpdateMemberDialog()">
+    <mat-icon>
+      add
+    </mat-icon>
+    {{ 'ADD_MEMBER' | translate }}
+  </button>
+</div>
+
+
+
+<app-members-page-members-table [members]="members"></app-members-page-members-table>
+
+<app-pagination-buttons [page]="page" (pageUpdated)="pageUpdated($event)"></app-pagination-buttons>

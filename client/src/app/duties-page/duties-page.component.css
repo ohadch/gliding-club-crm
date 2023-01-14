@@ -1,0 +1,7 @@
+.buttons-container {
+  display: flex;
+}
+
+.buttons-container > button {
+  margin-right: 0.3em;
+}

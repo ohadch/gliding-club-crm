@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gliding-club-crm-client
+  name: gliding-club-crm-client
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: gliding-club-crm-client
+status:
+  loadBalancer: {}

@@ -1,0 +1,17 @@
+<mat-form-field>
+  <mat-label>{{ 'MEMBER' | translate }}</mat-label>
+  <input
+    name="member"
+    type="text"
+    [placeholder]="'MEMBER' | translate"
+    matInput
+    [formControl]="member"
+    [matAutocomplete]="templateDataSourceMember">
+  <mat-autocomplete #templateDataSourceMember="matAutocomplete" [displayWith]="memberDisplayFn" (optionSelected)="onSelected($event)">
+    <mat-option
+      *ngFor="let option of filteredMembers | async"
+      [value]="option">
+      {{option.fullName}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

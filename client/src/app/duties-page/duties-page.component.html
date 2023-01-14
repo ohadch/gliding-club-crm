@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <h1>{{ 'DUTIES' | translate }}</h1>
+  <div class="buttons-container">
+    <button mat-flat-button color="primary" (click)="unassignAllDuties()">
+      {{ 'UNASSIGN_ALL_DUTIES' | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="assignSingleUnassignedDuties()">
+      {{ 'ASSIGN_SINGLE_UNASSIGNED_DUTY' | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="assignUnassignedDuties()">
+      {{ 'ASSIGN_UNASSIGNED_DUTIES' | translate }}
+    </button>
+  </div>
+</div>
+
+
+
+<app-duties-page-duties-table [duties]="duties"></app-duties-page-duties-table>
+<app-pagination-buttons [page]="page" (pageUpdated)="pageUpdated($event)"></app-pagination-buttons>
