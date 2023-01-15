@@ -33,6 +33,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=postgres
+      - CREATE_SEED_DATA=true
     ports:
       - "4001:4000"
     command: "yarn start"
