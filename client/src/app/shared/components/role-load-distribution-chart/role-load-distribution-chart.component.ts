@@ -20,20 +20,14 @@ export class RoleLoadDistributionChartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public async labels() {
-    const values = await this.dataset()
-    return values.map(item => item.memberName)
-  }
-
-  public async data() {
-    const values = await this.dataset()
+  public get data() {
+    const values = this.dataset()
     return values.map(item => ({ name: item.memberName, value: item.duties.length }))
   }
 
-  private async dataset() {
-    const unassigned = await this.translate.get('UNASSIGNED').toPromise()
+  private dataset() {
     return _(this.role.duties)
-      .groupBy(x => x.member?.fullName || unassigned)
+      .groupBy(x => x.member?.fullName || "Unassigned")
       .map((value, key) => ({ memberName: key, duties: value }))
       .value();
   }
