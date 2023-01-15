@@ -66,16 +66,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-  keycloak:
-    image: quay.io/keycloak/keycloak:20.0.3
-    command: start-dev
-    environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-    ports:
-      - "8080:8080"
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
