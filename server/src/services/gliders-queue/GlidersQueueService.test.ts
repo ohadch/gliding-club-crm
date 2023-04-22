@@ -1,16 +1,22 @@
-import {GlidersQueueService} from "./index";
-import {expect} from "chai";
 import {setUpConnectionForAllResources} from "../../config/db";
+import {GlidersQueueService} from "./index";
 
 describe('GlidersQueueService', () => {
     before(async () => {
         await setUpConnectionForAllResources();
     })
 
-    describe('getQueueForDay', () => {
-        it('should return the queue for the given day', async () => {
-            const queue = await GlidersQueueService.getQueueForDay(new Date());
-            expect(queue).to.be.an('array');
-        });
+    describe('generateQueueOrderNumbersForMembers', () => {
+        it('Should generate queue order numbers', async () => {
+            await GlidersQueueService.generateQueueOrderNumbersForMembers();
+        })
     })
+
+    // describe('generateMemberRanks', () => {
+    //     it('Should generate ranks', async () => {
+    //         const numReservedSpots = 4;
+    //         const ranks = await GlidersQueueService.generateMemberRanks(numReservedSpots);
+    //         expect(ranks).to.have.length.above(0);
+    //     })
+    // })
 })
