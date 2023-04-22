@@ -55,6 +55,7 @@
   "GLIDERS": "Gliders",
   "TYPE": "Type",
   "CALLSIGN": "Callsign",
+  "OWNERS": "Owners",
   "WEEKDAYS": {
     "SUNDAY": "Sunday",
     "MONDAY": "Monday",

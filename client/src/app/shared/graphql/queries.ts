@@ -103,7 +103,10 @@ export const QUERY_GET_GLIDERS = gql`
     gliders {
         id,
         callSign,
-        type
+        owners {
+          ...GeneralMember
+        }
     }
   }
+  ${GeneralMemberFragment}
 `

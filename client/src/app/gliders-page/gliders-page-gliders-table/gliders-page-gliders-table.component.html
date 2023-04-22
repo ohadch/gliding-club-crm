@@ -13,6 +13,15 @@
     <td mat-cell *matCellDef="let element"> {{element.callSign}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="owners">
+    <th mat-header-cell *matHeaderCellDef>{{ 'OWNERS' | translate }}</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-chip-list aria-label="Owners">
+        <mat-chip *ngFor="let member of element.owners">{{ member.fullName }}</mat-chip>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
