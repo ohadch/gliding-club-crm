@@ -7,6 +7,7 @@ import { Duty } from '../Duty';
 import { MemberPreference } from '../MemberPreference';
 import BaseModel from "../__abstract__/BaseModel";
 import {getDaysDiff} from "../../services/utils/date.utils";
+import {Glider} from "../Glider";
 
 export const MEMBER_RELATIONS = [
   'roles',
@@ -58,6 +59,10 @@ export class Member extends BaseModel {
   @Field(() => [MemberPreference], { nullable: true })
   @OneToMany(() => MemberPreference, (preference) => preference.otherMember)
   preferencesAsOtherMember: MemberPreference[];
+
+  @Field(() => [Glider], { nullable: true })
+  @ManyToMany(() => Glider, (glider) => glider.owners)
+  ownedGliders: Glider[]
 
   @Field(() => String)
   public get fullName() {
