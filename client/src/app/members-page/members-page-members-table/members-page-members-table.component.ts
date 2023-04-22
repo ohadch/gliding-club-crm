@@ -9,7 +9,7 @@ import { GetMembers_members } from "../../shared/graphql/types/GetMembers";
 export class MembersPageMembersTableComponent implements OnInit {
 
   @Input() members!: GetMembers_members[]
-  displayedColumns: string[] = ['id', 'fullName', 'roles', 'duties', 'actions'];
+  displayedColumns: string[] = ['id', 'fullName', 'roles', 'queueOrderNumber', 'duties', 'actions'];
 
   constructor(
 

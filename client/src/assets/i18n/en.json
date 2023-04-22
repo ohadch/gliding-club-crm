@@ -55,6 +55,7 @@
   "GLIDERS": "Gliders",
   "TYPE": "Type",
   "CALLSIGN": "Callsign",
+  "QUEUE_ORDER_NUMBER": "Queue Order Number",
   "OWNERS": "Owners",
   "WEEKDAYS": {
     "SUNDAY": "Sunday",

@@ -36,11 +36,11 @@ export class Member extends BaseModel {
   lastName: string;
 
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   mobilePhone: string;
 
   @Field(() => [Role], { nullable: true })
@@ -65,7 +65,7 @@ export class Member extends BaseModel {
   ownedGliders: Glider[]
 
   @Field(() => Int, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   queueOrderNumber: number;
 
   @Field(() => String)

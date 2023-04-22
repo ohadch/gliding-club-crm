@@ -50,6 +50,7 @@ export const GeneralMemberFragment = gql`
     firstName,
     lastName,
     fullName,
+    queueOrderNumber,
     roles {
       id,
       name

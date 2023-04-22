@@ -3,6 +3,7 @@ import {createAction, createGlider, createMember, createMemberAssignmentPreferen
 import {Action} from "../../models/Action";
 import {getLogger} from "../logging";
 import {getDatesRange} from "../utils/date.utils";
+import {GlidersQueueService} from "../gliders-queue";
 
 const logger = getLogger("seed");
 
@@ -90,11 +91,11 @@ export async function createSeedData() {
         'Barbara Proctor',
         'Jerome Scrudato',
         'Susan Lopez'
-    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+    ].map(name => name.split(' ')).map(([firstName, lastName], i) => createMember({
         firstName,
         lastName,
-        email: `${firstName}.${lastName}@example.com`,
-        mobilePhone: "12345678",
+        email: `${firstName}.${lastName}${i}@example.com`,
+        mobilePhone: `12345678${i}`,
         roles: [fieldResponsibleRole]
     })))
 
@@ -110,11 +111,11 @@ export async function createSeedData() {
         'Catherine Richmond',
         'Yvonne Red',
         'Dawn Norman',
-    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+    ].map(name => name.split(' ')).map(([firstName, lastName], i) => createMember({
         firstName,
         lastName,
-        email: `${firstName}.${lastName}@example.com`,
-        mobilePhone: "12345678",
+        email: `${firstName}.${lastName}${i}@example.com`,
+        mobilePhone: `22345678${i}`,
         roles: [maintenanceRole]
     })))
 
@@ -132,11 +133,11 @@ export async function createSeedData() {
         'Grace Derr',
         'Lillie Dargis',
         'Bertha Nielsen',
-    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+    ].map(name => name.split(' ')).map(([firstName, lastName], i) => createMember({
         firstName,
         lastName,
-        email: `${firstName}.${lastName}@example.com`,
-        mobilePhone: "12345678",
+        email: `${firstName}.${lastName}${i}@example.com`,
+        mobilePhone: `32345678${i}`,
         roles: [responsibleCfiRole]
     })))
 
@@ -155,11 +156,11 @@ export async function createSeedData() {
         'Kimberly Davis',
         'Ronda Towe',
         'Phyllis Braud',
-    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+    ].map(name => name.split(' ')).map(([firstName, lastName], i) => createMember({
         firstName,
         lastName,
-        email: `${firstName}.${lastName}@example.com`,
-        mobilePhone: "12345678",
+        email: `${firstName}.${lastName}${i}@example.com`,
+        mobilePhone: `42345678${i}`,
         roles: [towPilotRole]
     })))
 
@@ -169,6 +170,9 @@ export async function createSeedData() {
         ...responsibleCfis,
         ...towPilots,
     ]
+
+    // Generate queue order numbers
+    await GlidersQueueService.generateQueueOrderNumbersForMembers()
 
     // Create some preferences
     await createMemberAssignmentPreference({
