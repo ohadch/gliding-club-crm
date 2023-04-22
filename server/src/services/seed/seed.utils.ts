@@ -1,5 +1,5 @@
 import {
-    ICreateActionOptions,
+    ICreateActionOptions, ICreateGliderOptions,
     ICreateMemberOptions, ICreateMemberPreferencesOptions,
     ICreateRoleOptions, ICreateShiftOptions,
 } from "./seed.types";
@@ -10,6 +10,7 @@ import {Shift} from "../../models/Shift";
 import {getLogger} from "../logging";
 import {Duty} from "../../models/Duty";
 import {MemberPreference} from "../../models/MemberPreference";
+import {Glider} from "../../models/Glider";
 
 const logger = getLogger("seed-utils");
 
@@ -99,4 +100,16 @@ export async function createMemberAssignmentPreference(options: ICreateMemberPre
 
     await preference.save();
 
+}
+
+
+export async function createGlider(options: ICreateGliderOptions): Promise<Glider> {
+  logger.info(`Creating glider ${options.callSign}`);
+  const glider = new Glider();
+
+  glider.callSign = options.callSign;
+  glider.owners = options.owners;
+  await glider.save();
+
+  return glider;
 }

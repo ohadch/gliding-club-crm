@@ -1,5 +1,5 @@
 import {MemberAssignmentPreferenceType, ShiftType} from "../../@types/enums";
-import {createAction, createMember, createMemberAssignmentPreference, createRole,} from "./seed.utils";
+import {createAction, createGlider, createMember, createMemberAssignmentPreference, createRole,} from "./seed.utils";
 import {Action} from "../../models/Action";
 import {getLogger} from "../logging";
 import {getDatesRange} from "../utils/date.utils";
@@ -79,100 +79,96 @@ export async function createSeedData() {
     }
 
     // Create Field Responsibles
-    await Promise.all([
-        [
-            'Joe Daniels',
-            'Danny Nolazco',
-            'Christina Purvis',
-            'Helen Hayes',
-            'Vernon Smith',
-            'Gladys Arnold',
-            'Michael Georges',
-            'Barbara Proctor',
-            'Jerome Scrudato',
-            'Susan Lopez'
-        ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
-            firstName,
-            lastName,
-            email: `${firstName}.${lastName}@example.com`,
-            mobilePhone: "12345678",
-            roles: [fieldResponsibleRole]
-        }))
-    ])
+    const fieldResponsibles = await Promise.all([
+        'Joe Daniels',
+        'Danny Nolazco',
+        'Christina Purvis',
+        'Helen Hayes',
+        'Vernon Smith',
+        'Gladys Arnold',
+        'Michael Georges',
+        'Barbara Proctor',
+        'Jerome Scrudato',
+        'Susan Lopez'
+    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+        firstName,
+        lastName,
+        email: `${firstName}.${lastName}@example.com`,
+        mobilePhone: "12345678",
+        roles: [fieldResponsibleRole]
+    })))
 
     // Create Maintenance Persons
-    await Promise.all([
-        [
-            'Diana Cody',
-            'William Patock',
-            'Annette Entrekin',
-            'Natasha Almodovar',
-            'Karen Arabian',
-            'Theresa Derringer',
-            'Nikki Meza',
-            'Catherine Richmond',
-            'Yvonne Red',
-            'Dawn Norman',
-        ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
-            firstName,
-            lastName,
-            email: `${firstName}.${lastName}@example.com`,
-            mobilePhone: "12345678",
-            roles: [maintenanceRole]
-        }))
-    ])
+    const maintenancePersons = await Promise.all([
+        'Diana Cody',
+        'William Patock',
+        'Annette Entrekin',
+        'Natasha Almodovar',
+        'Karen Arabian',
+        'Theresa Derringer',
+        'Nikki Meza',
+        'Catherine Richmond',
+        'Yvonne Red',
+        'Dawn Norman',
+    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+        firstName,
+        lastName,
+        email: `${firstName}.${lastName}@example.com`,
+        mobilePhone: "12345678",
+        roles: [maintenanceRole]
+    })))
 
     // Create Responsible CFIs
-    await Promise.all([
-        [
-            'Jaime Keyes',
-            'Larry Sanchez',
-            'Thu Smith',
-            'Vickie Emmert',
-            'Judith Jenkins',
-            'Paul Anderton',
-            'Kathy Francis',
-            'Heather Trias',
-            'Fred Adams',
-            'Grace Derr',
-            'Lillie Dargis',
-            'Bertha Nielsen',
-        ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
-            firstName,
-            lastName,
-            email: `${firstName}.${lastName}@example.com`,
-            mobilePhone: "12345678",
-            roles: [responsibleCfiRole]
-        }))
-    ])
+    const responsibleCfis = await Promise.all([
+        'Jaime Keyes',
+        'Larry Sanchez',
+        'Thu Smith',
+        'Vickie Emmert',
+        'Judith Jenkins',
+        'Paul Anderton',
+        'Kathy Francis',
+        'Heather Trias',
+        'Fred Adams',
+        'Grace Derr',
+        'Lillie Dargis',
+        'Bertha Nielsen',
+    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+        firstName,
+        lastName,
+        email: `${firstName}.${lastName}@example.com`,
+        mobilePhone: "12345678",
+        roles: [responsibleCfiRole]
+    })))
 
     // Create Tow Pilots
-    await Promise.all([
-        [
-            'Kathy Francis',
-            'Heather Trias',
-            'Fred Adams',
-            'Grace Derr',
-            'Lillie Dargis',
-            'Bertha Nielsen',
-            'Ann Smith',
-            'Jo Howard',
-            'Eric Lail',
-            'Olive Lance',
-            'Kimberly Davis',
-            'Ronda Towe',
-            'Phyllis Braud',
-        ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
-            firstName,
-            lastName,
-            email: `${firstName}.${lastName}@example.com`,
-            mobilePhone: "12345678",
-            roles: [towPilotRole]
-        }))
-    ])
+    const towPilots = await Promise.all([
+        'Kathy Francis',
+        'Heather Trias',
+        'Fred Adams',
+        'Grace Derr',
+        'Lillie Dargis',
+        'Bertha Nielsen',
+        'Ann Smith',
+        'Jo Howard',
+        'Eric Lail',
+        'Olive Lance',
+        'Kimberly Davis',
+        'Ronda Towe',
+        'Phyllis Braud',
+    ].map(name => name.split(' ')).map(([firstName, lastName]) => createMember({
+        firstName,
+        lastName,
+        email: `${firstName}.${lastName}@example.com`,
+        mobilePhone: "12345678",
+        roles: [towPilotRole]
+    })))
 
-    // Wait 10 seconds to allow the database to catch up
-    await new Promise(resolve => setTimeout(resolve, 10000));
+    const allMembers = [
+        ...fieldResponsibles,
+        ...maintenancePersons,
+        ...responsibleCfis,
+        ...towPilots,
+    ]
 
     // Create some preferences
     await createMemberAssignmentPreference({
@@ -202,6 +198,45 @@ export async function createSeedData() {
         startDate: new Date("2023-02-01"),
         endDate: new Date("2023-08-15"),
     })
+
+
+    // Club gliders
+    await createGlider({
+        callSign: "N4XGAA",
+        owners: [],
+    });
+    await createGlider({
+        callSign: "N4XGAB",
+        owners: [],
+    });
+    await createGlider({
+        callSign: "N4XGAC",
+        owners: [],
+    });
+    await createGlider({
+        callSign: "N4XGAD",
+        owners: [],
+    });
+    await createGlider({
+        callSign: "N4XGAE",
+        owners: [
+            allMembers[0],
+            allMembers[11],
+        ],
+    });
+    await createGlider({
+        callSign: "N4XGAF",
+        owners: [
+            allMembers[1],
+        ],
+    });
+    await createGlider({
+        callSign: "N4XGAG",
+        owners: [
+            allMembers[20],
+            allMembers[21],
+        ],
+    });
 
     logger.info("Finished creating seed data");
 }
