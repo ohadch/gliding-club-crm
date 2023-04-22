@@ -1,4 +1,6 @@
 // DB
+import {createConnection} from "typeorm";
+
 export const DB_TYPE = (process.env.DB_TYPE || 'sqlite') as 'postgres' | 'sqlite' | 'mysql';
 export const DB_HOST = process.env.DB_HOST || 'localhost';
 export const DB_PORT = parseInt(process.env.DB_PORT || "5432", 10);
