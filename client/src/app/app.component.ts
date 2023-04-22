@@ -32,6 +32,7 @@ export class AppComponent {
     { name: 'MEMBERS', icon: "person", to: "/members" },
     { name: 'ROLES', icon: "manage_accounts", to: "/roles" },
     { name: 'MEMBER_PREFERENCES', icon: "settings", to: "/member-preferences" },
+    { name: 'GLIDERS', icon: "airplanemode_active", to: "/gliders" },
   ]
 
   constructor(

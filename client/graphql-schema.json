@@ -701,18 +701,6 @@
             "deprecationReason": null
           },
           {
-            "name": "authId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "mobilePhone",
             "description": null,
             "args": [],
