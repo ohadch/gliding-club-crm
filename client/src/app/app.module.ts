@@ -28,6 +28,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MemberDetailsPageModule } from "./member-details-page/member-details-page.module";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {GlidersPageModule} from "./gliders-page/gliders-page.module";
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MembersPageModule,
     RolesPageModule,
     ShiftsPageModule,
+    GlidersPageModule,
     MatListModule,
     MatSidenavModule,
     MatIconModule,

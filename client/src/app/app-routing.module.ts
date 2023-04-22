@@ -7,11 +7,13 @@ import {RolesPageComponent} from "./roles-page/roles-page.component";
 import {MemberPreferencesPageComponent} from "./member-preferences-page/member-preferences-page.component";
 import {ActionsPageComponent} from "./actions-page/actions-page.component";
 import {MemberDetailsPageComponent} from "./member-details-page/member-details-page.component";
+import {GlidersPageComponent} from "./gliders-page/gliders-page.component";
 
 const routes: Routes = [
   {path: "actions", component: ActionsPageComponent},
   {path: "members", component: MembersPageComponent},
   {path: "members/:id", component: MemberDetailsPageComponent},
+  {path: "gliders", component: GlidersPageComponent},
   {path: "shifts", component: ShiftsPageComponent},
   {path: "duties", component: DutiesPageComponent},
   {path: "roles", component: RolesPageComponent},

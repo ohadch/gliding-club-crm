@@ -37,3 +37,8 @@ export interface ICreateMemberPreferencesOptions {
     startDate?: Date;
     endDate?: Date;
 }
+
+export interface ICreateGliderOptions {
+    callSign: string;
+    owners: Member[];
+}

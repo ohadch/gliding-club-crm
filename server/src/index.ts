@@ -100,7 +100,10 @@ async function main() {
 
     // Create seed data if needed
     if (CREATE_SEED_DATA) {
+        log.info('Creating seed data');
         await createSeedData();
+    } else {
+        log.info('Not creating seed data');
     }
 
     app.listen({port: PORT}, () => {

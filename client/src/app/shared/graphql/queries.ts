@@ -95,3 +95,18 @@ export const QUERY_GET_ACTIONS = gql`
   ${GeneralShiftFragment}
 
 `
+
+
+export const QUERY_GET_GLIDERS = gql`
+
+  query GetGliders {
+    gliders {
+        id,
+        callSign,
+        owners {
+          ...GeneralMember
+        }
+    }
+  }
+  ${GeneralMemberFragment}
+`
