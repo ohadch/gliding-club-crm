@@ -6,17 +6,16 @@ import {
 } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
 import {Member} from '../Member';
-import {Glider} from "../Glider";
+import {GlidersReservationQueueCycle} from "../GlidersReservationQueueCycle";
 
-export const GLIDER_DAILY_QUEUE_MEMBER_RANK_RELATIONS = [
+export const GLIDERS_RESERVATION_QUEUE_CYCLE_MEMBER_RANK_RELATIONS = [
     'member',
-    'glider'
 ];
 
 @Entity()
-@Unique(['gliderId', 'date'])
+@Unique(['memberId', 'rank'])
 @ObjectType()
-export class GliderDailyQueueMemberRank extends BaseModel {
+export class GlidersReservationQueueCycleMemberRank extends BaseModel {
     @Field(
         () => Int,
     )
@@ -31,10 +30,6 @@ export class GliderDailyQueueMemberRank extends BaseModel {
     @Column()
     memberId: number;
 
-    @Field(() => Date)
-    @Column()
-    date: Date;
-
     @Field(() => Member, { nullable: true })
     @ManyToOne(() => Member)
     @JoinColumn({ name: 'memberId' })
@@ -42,11 +37,10 @@ export class GliderDailyQueueMemberRank extends BaseModel {
 
     @Field(() => Int)
     @Column()
-    gliderId: number;
+    queueId: number;
 
-    @Field(() => Glider, { nullable: true })
-    @ManyToOne(() => Glider)
-    @JoinColumn({ name: 'gliderId' })
-    glider: Glider;
-
+    @Field(() => GlidersReservationQueueCycle, { nullable: true })
+    @ManyToOne(() => GlidersReservationQueueCycle)
+    @JoinColumn({ name: 'queueId' })
+    cycle: GlidersReservationQueueCycle;
 }
