@@ -26,8 +26,9 @@ import {
     DB_PORT, CREATE_SEED_DATA,
 } from './config'
 import {createSeedData} from "./services/seed";
+import {GliderDailyQueueMemberRank} from "./models/GliderDailyQueueMemberRank";
 
-const log = getLogger('server');
+const logger = getLogger('server');
 
 AdminBro.registerAdapter({Database, Resource});
 
@@ -43,6 +44,7 @@ const RESOURCES = [
     MemberPreference,
     Role,
     Shift,
+    GliderDailyQueueMemberRank
 ];
 
 async function graphQlSchema() {
@@ -100,16 +102,16 @@ async function main() {
 
     // Create seed data if needed
     if (CREATE_SEED_DATA) {
-        log.info('Creating seed data');
+        logger.info('Creating seed data');
         await createSeedData();
     } else {
-        log.info('Not creating seed data');
+        logger.info('Not creating seed data');
     }
 
     app.listen({port: PORT}, () => {
         const url = `http://localhost:${PORT}`;
-        log.info(`🚀 Apollo server is listening on ${url}${GRAPHQL_ENDPOINT}`);
-        log.info(`👩‍💻 Admin is listening on ${url}${ADMIN_ENDPOINT}`);
+        logger.info(`🚀 Apollo server is listening on ${url}${GRAPHQL_ENDPOINT}`);
+        logger.info(`👩‍💻 Admin is listening on ${url}${ADMIN_ENDPOINT}`);
     });
 }
 
