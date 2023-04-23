@@ -23,4 +23,8 @@ export class GliderReservationQueueCycle extends BaseModel {
     @Field(() => [Action])
     @OneToMany(() => Action, (action) => action.gliderReservationQueueCycle)
     actions: Action[];
+
+    @Field(() => Int)
+    @Column()
+    memberRankDifferenceBetweenConsecutiveActions: number;
 }

@@ -33,6 +33,7 @@ export class AppComponent {
     { name: 'ROLES', icon: "manage_accounts", to: "/roles" },
     { name: 'MEMBER_PREFERENCES', icon: "settings", to: "/member-preferences" },
     { name: 'GLIDERS', icon: "airplanemode_active", to: "/gliders" },
+    { name: 'GLIDER_RESERVATION_QUEUE', icon: "queue", to: "/glider-reservation-queue" },
   ]
 
   constructor(

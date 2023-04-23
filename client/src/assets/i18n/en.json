@@ -57,6 +57,7 @@
   "CALLSIGN": "Callsign",
   "QUEUE_ORDER_NUMBER": "Queue Order Number",
   "OWNERS": "Owners",
+  "GLIDER_RESERVATION_QUEUE": "Glider Reservation Queue",
   "WEEKDAYS": {
     "SUNDAY": "Sunday",
     "MONDAY": "Monday",

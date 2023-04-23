@@ -29,6 +29,7 @@ import { MemberDetailsPageModule } from "./member-details-page/member-details-pa
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {GlidersPageModule} from "./gliders-page/gliders-page.module";
+import {GliderReservationQueuePageModule} from "./glider-reservation-queue-page/glider-reservation-queue-page.module";
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {GlidersPageModule} from "./gliders-page/gliders-page.module";
     MatToolbarModule,
     MatButtonModule,
     MemberDetailsPageModule,
+    GliderReservationQueuePageModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

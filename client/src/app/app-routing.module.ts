@@ -8,6 +8,9 @@ import {MemberPreferencesPageComponent} from "./member-preferences-page/member-p
 import {ActionsPageComponent} from "./actions-page/actions-page.component";
 import {MemberDetailsPageComponent} from "./member-details-page/member-details-page.component";
 import {GlidersPageComponent} from "./gliders-page/gliders-page.component";
+import {
+  GliderReservationQueuePageComponent
+} from "./glider-reservation-queue-page/glider-reservation-queue-page.component";
 
 const routes: Routes = [
   {path: "actions", component: ActionsPageComponent},
@@ -18,6 +21,7 @@ const routes: Routes = [
   {path: "duties", component: DutiesPageComponent},
   {path: "roles", component: RolesPageComponent},
   {path: "member-preferences", component: MemberPreferencesPageComponent},
+  {path: "glider-reservation-queue", component: GliderReservationQueuePageComponent},
   {path: '', redirectTo: '/actions', pathMatch: 'full'},
 ];
 
