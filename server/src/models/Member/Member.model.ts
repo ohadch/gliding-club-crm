@@ -64,10 +64,6 @@ export class Member extends BaseModel {
   @ManyToMany(() => Glider, (glider) => glider.owners)
   ownedGliders: Glider[]
 
-  @Field(() => Int, { nullable: true })
-  @Column({ nullable: true, unique: true })
-  queueOrderNumber: number;
-
   @Field(() => String)
   public get fullName() {
     return `${this.firstName} ${this.lastName}`;
