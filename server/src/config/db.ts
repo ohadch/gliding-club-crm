@@ -7,6 +7,7 @@ import {Member} from "../models/Member";
 import {MemberPreference} from "../models/MemberPreference";
 import {Role} from "../models/Role";
 import {Shift} from "../models/Shift";
+import {MemberDailyRankInGliderReservationQueue} from "../models/MemberDailyRankInGliderReservationQueue";
 
 export const databaseConnectionFactory = () => createConnection({
     type: DB_TYPE,
@@ -29,6 +30,7 @@ export const RESOURCES = [
     MemberPreference,
     Role,
     Shift,
+    MemberDailyRankInGliderReservationQueue
 ];
 
 export async function setUpConnectionForAllResources() {

@@ -7,7 +7,12 @@ const logger = getLogger('GlidersQueueService');
 export class GlidersQueueService {
 
     /**
-     * Generates queue orders for members
+     * Generates queue orders for members.
+     * On a given day, the queue order is used to determine the order in which members are allowed to fly.
+     * Naively, if member A has a queue order of 1 and member B has a queue order of 2,
+     * member A will be allowed to fly before member B, on the first day of the cycle,
+     * member A will be allowed to fly first.
+     * On the second day of the cycle, member B will be allowed to fly first.
      */
     public static async generateQueueOrderNumbersForMembers() {
         logger.info('Generating queue order numbers for members');

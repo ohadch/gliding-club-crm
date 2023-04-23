@@ -31,7 +31,6 @@ export async function createSeedData() {
     const responsibleCfiRole = await createRole({name: "Responsible CFI"});
     const maintenanceRole = await createRole({name: "Maintenance"});
 
-
     // For every action date, create an action and 2 shifts
     for await (const actionDate of actionDates) {
         await createAction({
