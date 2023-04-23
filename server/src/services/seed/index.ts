@@ -170,9 +170,6 @@ export async function createSeedData() {
         ...towPilots,
     ]
 
-    // Generate queue order numbers
-    await GlidersQueueService.generateQueueOrderNumbersForMembers()
-
     // Create some preferences
     await createMemberAssignmentPreference({
         memberName: "Joe Daniels",

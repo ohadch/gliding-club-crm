@@ -1,11 +1,12 @@
 import {
-  Column, Entity, OneToMany, PrimaryGeneratedColumn,
+    Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Shift } from '../Shift';
 import BaseModel from "../__abstract__/BaseModel";
 import UtilsService from "../../services/utils";
 import { ShiftType } from "../../@types/enums";
+import {GliderReservationQueueCycle} from "../GliderReservationQueueCycle";
 
 export const ACTION_RELATIONS = [
   'shifts',
@@ -27,9 +28,17 @@ export class Action extends BaseModel {
     @Column({ unique: true })
     date: Date;
 
+    @Field(() => Int, { nullable: true })
+    @Column({ nullable: true })
+    gliderReservationQueueCycleId: number;
+
     @Field(() => [Shift], { nullable: true })
     @OneToMany(() => Shift, (shift) => shift.action)
     shifts: Shift[];
+
+    @Field(() => GliderReservationQueueCycle)
+    @ManyToOne(() => GliderReservationQueueCycle, (gliderReservationQueueCycle) => gliderReservationQueueCycle.actions)
+    gliderReservationQueueCycle: GliderReservationQueueCycle;
 
     public async ensureShifts() {
       const shifts: Shift[] = [];
