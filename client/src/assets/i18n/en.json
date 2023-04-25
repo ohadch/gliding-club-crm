@@ -58,6 +58,7 @@
   "QUEUE_ORDER_NUMBER": "Queue Order Number",
   "OWNERS": "Owners",
   "GLIDER_RESERVATION_QUEUE": "Glider Reservation Queue",
+  "ENDORSEMENTS": "Endorsements",
   "WEEKDAYS": {
     "SUNDAY": "Sunday",
     "MONDAY": "Monday",

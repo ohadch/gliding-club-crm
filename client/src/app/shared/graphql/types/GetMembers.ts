@@ -49,6 +49,17 @@ export interface GetMembers_members_preferences {
   endDate: any | null;
 }
 
+export interface GetMembers_members_endorsements_glider {
+  __typename: "Glider";
+  id: number;
+  callSign: string;
+}
+
+export interface GetMembers_members_endorsements {
+  __typename: "Endorsement";
+  glider: GetMembers_members_endorsements_glider | null;
+}
+
 export interface GetMembers_members {
   __typename: "Member";
   id: number;
@@ -58,6 +69,7 @@ export interface GetMembers_members {
   roles: GetMembers_members_roles[] | null;
   duties: GetMembers_members_duties[] | null;
   preferences: GetMembers_members_preferences[] | null;
+  endorsements: GetMembers_members_endorsements[] | null;
 }
 
 export interface GetMembers {

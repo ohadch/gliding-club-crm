@@ -214,18 +214,22 @@ export async function createSeedData() {
     await createGlider({
         callSign: "N4XGAA",
         owners: [],
+        endorsedMembers: [...allMembers]
     });
     await createGlider({
         callSign: "N4XGAB",
         owners: [],
+        endorsedMembers: allMembers.filter((member, i) => i % 2 === 0)
     });
     await createGlider({
         callSign: "N4XGAC",
         owners: [],
+        endorsedMembers: allMembers.filter((member, i) => i % 2 === 1)
     });
     await createGlider({
         callSign: "N4XGAD",
         owners: [],
+        endorsedMembers: allMembers.filter((member, i) => i % 3 === 0)
     });
     await createGlider({
         callSign: "N4XGAE",
@@ -233,12 +237,14 @@ export async function createSeedData() {
             allMembers[0],
             allMembers[11],
         ],
+        endorsedMembers: allMembers.filter((member, i) => i % 3 === 1)
     });
     await createGlider({
         callSign: "N4XGAF",
         owners: [
             allMembers[1],
         ],
+        endorsedMembers: allMembers.filter((member, i) => i % 3 === 2)
     });
     await createGlider({
         callSign: "N4XGAG",
@@ -246,6 +252,7 @@ export async function createSeedData() {
             allMembers[20],
             allMembers[21],
         ],
+        endorsedMembers: allMembers.filter((member, i) => i % 3 === 0)
     });
 
     // Create glider reservation queue

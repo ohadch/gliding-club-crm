@@ -79,5 +79,11 @@ export const GeneralMemberFragment = gql`
       startDate,
       endDate
     }
+    endorsements {
+      glider {
+        id,
+        callSign
+      }
+    }
   }
 `

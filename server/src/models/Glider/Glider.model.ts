@@ -1,14 +1,18 @@
 import {
-    Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn,
+    Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import {
     Field, Int, ObjectType,
 } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
 import {Member} from '../Member';
+import {Endorsement} from "../Endorsement";
 
 export const GLIDER_RELATIONS = [
     'owners',
+    'endorsements',
+    'endorsements.member',
+    'endorsements.glider',
 ];
 
 @Entity()
@@ -36,4 +40,9 @@ export class Glider extends BaseModel {
     @ManyToMany(() => Member, member => member.ownedGliders)
     @JoinTable()
     owners: Member[]
+
+    @Field(() => [Endorsement], {nullable: true})
+    @OneToMany(() => Endorsement, endorsement => endorsement.glider)
+    endorsements: Endorsement[]
+
 }

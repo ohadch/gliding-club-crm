@@ -12,6 +12,7 @@ import {Duty} from "../../models/Duty";
 import {MemberPreference} from "../../models/MemberPreference";
 import {Glider} from "../../models/Glider";
 import {GliderReservationQueueCycle} from "../../models/GliderReservationQueueCycle";
+import {Endorsement} from "../../models/Endorsement";
 
 const logger = getLogger("seed-utils");
 
@@ -111,6 +112,17 @@ export async function createGlider(options: ICreateGliderOptions): Promise<Glide
     glider.callSign = options.callSign;
     glider.owners = options.owners;
     await glider.save();
+
+    const endorsements: Endorsement[] = options.endorsedMembers.map(
+        member => {
+            const endorsement = new Endorsement();
+            endorsement.glider = glider;
+            endorsement.member = member;
+            return endorsement;
+        }
+    )
+    logger.info(`Creating ${endorsements.length} endorsements for glider ${glider.callSign}`);
+    await Endorsement.save(endorsements);
 
     return glider;
 }

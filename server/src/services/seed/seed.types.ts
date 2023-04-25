@@ -41,4 +41,5 @@ export interface ICreateMemberPreferencesOptions {
 export interface ICreateGliderOptions {
     callSign: string;
     owners: Member[];
+    endorsedMembers: Member[];
 }

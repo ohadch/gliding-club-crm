@@ -23,6 +23,16 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="endorsements">
+    <th mat-header-cell *matHeaderCellDef>{{ 'ENDORSEMENTS' | translate }}</th>
+
+    <td mat-cell *matCellDef="let element">
+      <mat-chip-list aria-label="Member Endorsements">
+        <mat-chip *ngFor="let endorsement of element.endorsements" >{{ endorsement.glider.callSign }}</mat-chip>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="duties">
     <th mat-header-cell *matHeaderCellDef>{{ 'DUTIES' | translate }}</th>
 
