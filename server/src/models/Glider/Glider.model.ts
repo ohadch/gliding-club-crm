@@ -45,4 +45,7 @@ export class Glider extends BaseModel {
     @OneToMany(() => Endorsement, endorsement => endorsement.glider)
     endorsements: Endorsement[]
 
+    @Field(() => Int)
+    @Column()
+    complexity: number;
 }

@@ -1,5 +1,5 @@
 import {
-    Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn,
+    Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import {Field, Int, ObjectType} from 'type-graphql';
 import {Role} from '../Role';
@@ -9,6 +9,7 @@ import BaseModel from "../__abstract__/BaseModel";
 import {getDaysDiff} from "../../services/utils/date.utils";
 import {Glider} from "../Glider";
 import {Endorsement} from "../Endorsement";
+import {GliderReservationQueueSpacingGroup} from "../GliderReservationQueueSpacingGroup";
 
 export const MEMBER_RELATIONS = [
     'roles',
@@ -48,6 +49,10 @@ export class Member extends BaseModel {
     @Column({nullable: true, unique: true})
     mobilePhone: string;
 
+    @Field(() => Int, {nullable: true})
+    @Column({nullable: true})
+    gliderReservationQueueSpacingGroupId: number;
+
     @Field(() => [Role], {nullable: true})
     @ManyToMany(() => Role, (role) => role.qualifiedMembers)
     @JoinTable()
@@ -73,6 +78,9 @@ export class Member extends BaseModel {
     @OneToMany(() => Endorsement, (memberEndorsement) => memberEndorsement.member)
     endorsements: Endorsement[];
 
+    @Field(() => GliderReservationQueueSpacingGroup, {nullable: true})
+    @ManyToOne(() => GliderReservationQueueSpacingGroup, (gliderReservationQueueSpacingGroup) => gliderReservationQueueSpacingGroup.member)
+    gliderReservationQueueSpacingGroup: GliderReservationQueueSpacingGroup;
 
     @Field(() => String)
     public get fullName() {

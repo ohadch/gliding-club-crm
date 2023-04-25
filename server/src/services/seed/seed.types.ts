@@ -42,4 +42,6 @@ export interface ICreateGliderOptions {
     callSign: string;
     owners: Member[];
     endorsedMembers: Member[];
+
+    complexity: number;
 }
