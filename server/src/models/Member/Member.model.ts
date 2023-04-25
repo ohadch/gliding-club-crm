@@ -69,7 +69,7 @@ export class Member extends BaseModel {
     @ManyToMany(() => Glider, (glider) => glider.owners)
     ownedGliders: Glider[]
 
-    @Field(() => [Endorsement])
+    @Field(() => [Endorsement], {nullable: true})
     @OneToMany(() => Endorsement, (memberEndorsement) => memberEndorsement.member)
     endorsements: Endorsement[];
 
