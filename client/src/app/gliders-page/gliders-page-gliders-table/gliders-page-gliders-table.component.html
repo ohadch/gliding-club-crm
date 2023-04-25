@@ -16,9 +16,7 @@
   <ng-container matColumnDef="endorsements">
     <th mat-header-cell *matHeaderCellDef>{{ 'ENDORSEMENTS' | translate }}</th>
     <td mat-cell *matCellDef="let element">
-      <mat-chip-list aria-label="Endorsements">
-        <mat-chip *ngFor="let endorsement of element.endorsements">{{ endorsement.member.fullName }}</mat-chip>
-      </mat-chip-list>
+      {{ element.endorsements.length }} members
     </td>
   </ng-container>
 
