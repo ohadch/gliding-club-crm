@@ -1,6 +1,6 @@
 import { Role } from "../../models/Role";
-import {MemberAssignmentPreferenceType, ShiftType} from "../../@types/enums";
-import {Member} from "../../models/Member";
+import { MemberAssignmentPreferenceType, ShiftType } from "../../@types/enums";
+import { Member } from "../../models/Member";
 
 export interface ICreateRoleOptions {
     name: string;
@@ -14,6 +14,11 @@ export interface ICreateMemberOptions {
     roles: Role[];
 }
 
+export interface ICreateDutyOptions {
+    role: Role;
+    numPeople: number;
+}
+
 export interface ICreateShiftOptions {
     type: ShiftType,
     duties: ICreateDutyOptions[];
@@ -22,12 +27,6 @@ export interface ICreateShiftOptions {
 export interface ICreateActionOptions {
     date: Date;
     shifts: ICreateShiftOptions[];
-}
-
-
-export interface ICreateDutyOptions {
-    role: Role;
-    numPeople: number;
 }
 
 export interface ICreateMemberPreferencesOptions {

@@ -1,15 +1,16 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId,} from 'typeorm';
-import {Field, Int, ObjectType} from 'type-graphql';
-import {Member, MEMBER_RELATIONS} from '../Member';
-import {Shift} from '../Shift';
-import {Role} from '../Role';
-import {MEMBER_PREFERENCE_RELATIONS, MemberPreference} from '../MemberPreference';
-import {getLogger} from '../../services/logging';
+import {
+  Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId,
+} from 'typeorm';
+import { Field, Int, ObjectType } from 'type-graphql';
+import { Member, MEMBER_RELATIONS } from '../Member';
+import { Shift } from '../Shift';
+import { Role } from '../Role';
+import { MEMBER_PREFERENCE_RELATIONS, MemberPreference } from '../MemberPreference';
+import { getLogger } from '../../services/logging';
 import UtilsService from '../../services/utils';
-import {Action} from '../Action';
+import { Action } from '../Action';
 import BaseModel from '../__abstract__/BaseModel';
-import {MemberAssignmentPreferenceType} from "../../@types/enums";
-
+import { MemberAssignmentPreferenceType } from "../../@types/enums";
 
 export const DUTY_RELATIONS = [
   'shift',
@@ -60,12 +61,12 @@ export class Duty extends BaseModel {
       return {
         duty: this,
         unavailableMembers: preferences
-            .filter(preference => preference.type === MemberAssignmentPreferenceType.Unavailable)
-            .filter(preference => preference.isApplicableToDuty(this)),
+          .filter(preference => preference.type === MemberAssignmentPreferenceType.Unavailable)
+          .filter(preference => preference.isApplicableToDuty(this)),
         membersThatSpecificallyRequestDuty: preferences
-            .filter(preference => preference.type === MemberAssignmentPreferenceType.RequestSpecific)
-            .filter(preference => preference.isApplicableToDuty(this))
-      }
+          .filter(preference => preference.type === MemberAssignmentPreferenceType.RequestSpecific)
+          .filter(preference => preference.isApplicableToDuty(this))
+      };
     }
 
     public static async getDutiesQueueForAssignment() {
@@ -143,7 +144,7 @@ export class Duty extends BaseModel {
       const preferences = await MemberPreference.find({
         relations: MEMBER_PREFERENCE_RELATIONS
       });
-      const preferencesOfUnavailableMembers = preferences.filter(preference => preference.isApplicableToShift(this.shift))
+      const preferencesOfUnavailableMembers = preferences.filter(preference => preference.isApplicableToShift(this.shift));
       const unavailableMembersDueToPreference = preferencesOfUnavailableMembers.map((preference) => preference.member);
 
       if (unavailableMembersDueToPreference.length) {

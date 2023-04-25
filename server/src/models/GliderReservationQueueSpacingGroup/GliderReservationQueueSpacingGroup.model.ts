@@ -1,17 +1,16 @@
 import {
-    Column,
-    Entity, OneToMany, PrimaryGeneratedColumn,
+  Column,
+  Entity, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
-import {Field, Int, ObjectType} from 'type-graphql';
+import { Field, Int, ObjectType } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
-import {Member} from "../Member";
-
+import { Member } from "../Member";
 
 @Entity()
 @ObjectType()
 export class GliderReservationQueueSpacingGroup extends BaseModel {
     @Field(
-        () => Int,
+      () => Int,
     )
     @PrimaryGeneratedColumn()
     id: number;
@@ -20,7 +19,7 @@ export class GliderReservationQueueSpacingGroup extends BaseModel {
     @Column()
     name: string;
 
-    @Field(() => [Member], {nullable: true})
+    @Field(() => [Member], { nullable: true })
     @OneToMany(() => Member, (member) => member.gliderReservationQueueSpacingGroup)
     members: Member[];
 }

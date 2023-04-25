@@ -1,6 +1,6 @@
 import { Field, InputType, Int } from 'type-graphql';
 import { MemberPreference } from './MemberPreference.model';
-import {MemberAssignmentPreferenceType} from "../../@types/enums";
+import { MemberAssignmentPreferenceType } from "../../@types/enums";
 
 @InputType()
 export class CreateMemberPreferenceInput implements Partial<MemberPreference> {

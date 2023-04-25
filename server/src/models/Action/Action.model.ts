@@ -1,12 +1,12 @@
 import {
-    Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
+  Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Shift } from '../Shift';
 import BaseModel from "../__abstract__/BaseModel";
 import UtilsService from "../../services/utils";
 import { ShiftType } from "../../@types/enums";
-import {GliderReservationQueueCycle} from "../GliderReservationQueueCycle";
+import { GliderReservationQueueCycle } from "../GliderReservationQueueCycle";
 
 export const ACTION_RELATIONS = [
   'shifts',

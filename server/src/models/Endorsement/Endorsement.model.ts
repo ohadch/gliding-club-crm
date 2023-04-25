@@ -4,13 +4,12 @@ import {
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Member } from '../Member';
 import BaseModel from "../__abstract__/BaseModel";
-import {Glider} from "../Glider";
+import { Glider } from "../Glider";
 
 export const ENDORSEMENT_RELATIONS = [
-    'members',
-    'gliders',
-]
-
+  'members',
+  'gliders',
+];
 
 @Entity()
 @ObjectType()
@@ -46,5 +45,4 @@ export class Endorsement extends BaseModel {
     @ManyToOne(() => Glider, (glider) => glider.endorsements)
     @JoinColumn({ name: 'gliderId' })
     glider: Glider;
-
 }

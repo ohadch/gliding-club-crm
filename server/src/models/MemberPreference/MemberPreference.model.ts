@@ -4,10 +4,10 @@ import {
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Member } from '../Member';
 import BaseModel from "../__abstract__/BaseModel";
-import {MemberAssignmentPreferenceType} from "../../@types/enums";
-import {Duty} from "../Duty";
-import {Shift} from "../Shift";
-import {areTwoDatesTheSameDay, isDateInRange} from "../../services/utils/date.utils";
+import { MemberAssignmentPreferenceType } from "../../@types/enums";
+import { Duty } from "../Duty";
+import { Shift } from "../Shift";
+import { areTwoDatesTheSameDay, isDateInRange } from "../../services/utils/date.utils";
 
 export const MEMBER_PREFERENCE_RELATIONS = [
   'member',
@@ -54,18 +54,18 @@ export class MemberPreference extends BaseModel {
     type: string;
 
     public isApplicableToDuty(duty: Duty) {
-        return this.isApplicableToShift(duty.shift)
+      return this.isApplicableToShift(duty.shift);
     }
 
     public isApplicableToShift(shift: Shift) {
-        if (this.startDate && this.endDate) {
-            return isDateInRange(shift.action.date, this.startDate, this.endDate)
-        }
+      if (this.startDate && this.endDate) {
+        return isDateInRange(shift.action.date, this.startDate, this.endDate);
+      }
 
-        if (this.startDate) {
-            return areTwoDatesTheSameDay(this.startDate, shift.action.date)
-        }
+      if (this.startDate) {
+        return areTwoDatesTheSameDay(this.startDate, shift.action.date);
+      }
 
-        return true
+      return true;
     }
 }

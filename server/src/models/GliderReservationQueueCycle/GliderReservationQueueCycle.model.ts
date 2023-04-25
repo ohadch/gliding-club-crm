@@ -1,11 +1,10 @@
 import {
-    Column,
-    Entity, OneToMany, PrimaryGeneratedColumn,
+  Column,
+  Entity, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
-import {Action} from "../Action";
-
+import { Action } from "../Action";
 
 @Entity()
 @ObjectType()

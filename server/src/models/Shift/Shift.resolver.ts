@@ -1,9 +1,11 @@
-import {Arg, Mutation, Query, Resolver,} from 'type-graphql';
+import {
+  Arg, Mutation, Query, Resolver,
+} from 'type-graphql';
 import * as _ from "lodash";
-import {Shift, SHIFT_RELATIONS} from './Shift.model';
-import {CreateShiftInput, UpdateShiftInput} from './Shift.inputs';
-import {getLogger} from "../../services/logging";
-import {ShiftType} from "../../@types/enums";
+import { Shift, SHIFT_RELATIONS } from './Shift.model';
+import { CreateShiftInput, UpdateShiftInput } from './Shift.inputs';
+import { getLogger } from "../../services/logging";
+import { ShiftType } from "../../@types/enums";
 
 @Resolver()
 export class ShiftResolver {
@@ -20,24 +22,21 @@ export class ShiftResolver {
       const shifts = await Shift.find({
         relations: SHIFT_RELATIONS,
 
-      }).then(_shifts => {
-        return _shifts.sort((a, b) => {
-          if (a.action.date > b.action.date) {
-            return 1
-          }
+      }).then(_shifts => _shifts.sort((a, b) => {
+        if (a.action.date > b.action.date) {
+          return 1;
+        }
 
-          if (a.action.date < b.action.date) {
-            return -1
-          }
+        if (a.action.date < b.action.date) {
+          return -1;
+        }
 
-          if (a.type === ShiftType.Morning) {
-            return -1
-          }
+        if (a.type === ShiftType.Morning) {
+          return -1;
+        }
 
-          return 1
-
-        })
-      });
+        return 1;
+      }));
 
       const pages = _.chunk(shifts, entriesPerPage);
       return pages[page - 1] || [];

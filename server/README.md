@@ -8,7 +8,7 @@ Structure the code as following:
 / src
     / services
         / my-service
-            - index.ts  // export default class MyService...
+            - GliderReservationsQueueSpacingGroupsService.ts  // export default class MyService...
             / __tests__
                 - MyService.test.ts
 ```
