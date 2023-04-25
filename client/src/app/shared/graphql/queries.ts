@@ -99,14 +99,19 @@ export const QUERY_GET_ACTIONS = gql`
 
 export const QUERY_GET_GLIDERS = gql`
 
-  query GetGliders {
-    gliders {
-        id,
-        callSign,
-        owners {
-          ...GeneralMember
+    query GetGliders {
+        gliders {
+            id,
+            callSign,
+            owners {
+                ...GeneralMember
+            }
+            endorsements {
+                member {
+                    ...GeneralMember
+                }
+            }
         }
     }
-  }
-  ${GeneralMemberFragment}
+    ${GeneralMemberFragment}
 `

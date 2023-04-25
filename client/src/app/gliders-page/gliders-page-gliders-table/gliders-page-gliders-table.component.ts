@@ -9,7 +9,7 @@ import {GetGliders_gliders} from "../../shared/graphql/types/GetGliders";
 export class GlidersPageGlidersTableComponent implements OnInit {
 
   @Input() gliders!: GetGliders_gliders[]
-  displayedColumns: string[] = ['id', 'callSign', 'owners'];
+  displayedColumns: string[] = ['id', 'callSign', 'endorsements', 'owners'];
 
   constructor() { }
 
