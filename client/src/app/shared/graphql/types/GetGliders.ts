@@ -72,11 +72,11 @@ export interface GetGliders_gliders_owners {
   firstName: string;
   lastName: string;
   fullName: string;
-  gliderReservationQueueSpacingGroup: GetGliders_gliders_owners_gliderReservationQueueSpacingGroup;
+  gliderReservationQueueSpacingGroup: GetGliders_gliders_owners_gliderReservationQueueSpacingGroup | null;
   roles: GetGliders_gliders_owners_roles[] | null;
   duties: GetGliders_gliders_owners_duties[] | null;
   preferences: GetGliders_gliders_owners_preferences[] | null;
-  endorsements: GetGliders_gliders_owners_endorsements[];
+  endorsements: GetGliders_gliders_owners_endorsements[] | null;
 }
 
 export interface GetGliders_gliders_endorsements_member_gliderReservationQueueSpacingGroup {
@@ -142,11 +142,11 @@ export interface GetGliders_gliders_endorsements_member {
   firstName: string;
   lastName: string;
   fullName: string;
-  gliderReservationQueueSpacingGroup: GetGliders_gliders_endorsements_member_gliderReservationQueueSpacingGroup;
+  gliderReservationQueueSpacingGroup: GetGliders_gliders_endorsements_member_gliderReservationQueueSpacingGroup | null;
   roles: GetGliders_gliders_endorsements_member_roles[] | null;
   duties: GetGliders_gliders_endorsements_member_duties[] | null;
   preferences: GetGliders_gliders_endorsements_member_preferences[] | null;
-  endorsements: GetGliders_gliders_endorsements_member_endorsements[];
+  endorsements: GetGliders_gliders_endorsements_member_endorsements[] | null;
 }
 
 export interface GetGliders_gliders_endorsements {

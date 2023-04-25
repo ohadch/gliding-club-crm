@@ -74,11 +74,11 @@ export class Member extends BaseModel {
     @ManyToMany(() => Glider, (glider) => glider.owners)
     ownedGliders: Glider[]
 
-    @Field(() => [Endorsement])
+    @Field(() => [Endorsement], { nullable: true })
     @OneToMany(() => Endorsement, (memberEndorsement) => memberEndorsement.member)
     endorsements: Endorsement[];
 
-    @Field(() => GliderReservationQueueSpacingGroup)
+    @Field(() => GliderReservationQueueSpacingGroup, { nullable: true })
     @ManyToOne(() => GliderReservationQueueSpacingGroup, (gliderReservationQueueSpacingGroup) => gliderReservationQueueSpacingGroup.members)
     gliderReservationQueueSpacingGroup: GliderReservationQueueSpacingGroup;
 

@@ -72,9 +72,9 @@ export interface GeneralMember {
   firstName: string;
   lastName: string;
   fullName: string;
-  gliderReservationQueueSpacingGroup: GeneralMember_gliderReservationQueueSpacingGroup;
+  gliderReservationQueueSpacingGroup: GeneralMember_gliderReservationQueueSpacingGroup | null;
   roles: GeneralMember_roles[] | null;
   duties: GeneralMember_duties[] | null;
   preferences: GeneralMember_preferences[] | null;
-  endorsements: GeneralMember_endorsements[];
+  endorsements: GeneralMember_endorsements[] | null;
 }

@@ -72,11 +72,11 @@ export interface GetMember_member {
   firstName: string;
   lastName: string;
   fullName: string;
-  gliderReservationQueueSpacingGroup: GetMember_member_gliderReservationQueueSpacingGroup;
+  gliderReservationQueueSpacingGroup: GetMember_member_gliderReservationQueueSpacingGroup | null;
   roles: GetMember_member_roles[] | null;
   duties: GetMember_member_duties[] | null;
   preferences: GetMember_member_preferences[] | null;
-  endorsements: GetMember_member_endorsements[];
+  endorsements: GetMember_member_endorsements[] | null;
 }
 
 export interface GetMember {

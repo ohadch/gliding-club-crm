@@ -24,6 +24,10 @@ export class GliderReservationQueuePageComponent implements OnInit {
     const groupsMap: { [key: string]: GetMember_member[] } = {}
 
     this.members.forEach(member => {
+      if (!member.gliderReservationQueueSpacingGroup) {
+        return
+      }
+
       if (!Object.keys(groupsMap).includes(member.gliderReservationQueueSpacingGroup.name)) {
         groupsMap[member.gliderReservationQueueSpacingGroup.name] = []
       }
