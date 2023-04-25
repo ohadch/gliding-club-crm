@@ -21,7 +21,7 @@ export const MEMBER_RELATIONS = [
   'endorsements',
   'endorsements.member',
   'endorsements.glider',
-
+  'gliderReservationQueueSpacingGroup'
 ];
 
 const DAYS_DIFF_WITH_CLOSEST_DUTY_IN_CASE_MEMBER_IS_NOT_ASSIGNED_AT_ALL = 100000;
@@ -78,7 +78,7 @@ export class Member extends BaseModel {
     @OneToMany(() => Endorsement, (memberEndorsement) => memberEndorsement.member)
     endorsements: Endorsement[];
 
-    @Field(() => GliderReservationQueueSpacingGroup, { nullable: true })
+    @Field(() => GliderReservationQueueSpacingGroup)
     @ManyToOne(() => GliderReservationQueueSpacingGroup, (gliderReservationQueueSpacingGroup) => gliderReservationQueueSpacingGroup.members)
     gliderReservationQueueSpacingGroup: GliderReservationQueueSpacingGroup;
 

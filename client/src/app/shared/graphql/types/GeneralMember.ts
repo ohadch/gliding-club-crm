@@ -9,6 +9,12 @@ import { ShiftType, MemberAssignmentPreferenceType } from "./../../../../types/g
 // GraphQL fragment: GeneralMember
 // ====================================================
 
+export interface GeneralMember_gliderReservationQueueSpacingGroup {
+  __typename: "GliderReservationQueueSpacingGroup";
+  id: number;
+  name: string;
+}
+
 export interface GeneralMember_roles {
   __typename: "Role";
   id: number;
@@ -66,8 +72,9 @@ export interface GeneralMember {
   firstName: string;
   lastName: string;
   fullName: string;
+  gliderReservationQueueSpacingGroup: GeneralMember_gliderReservationQueueSpacingGroup;
   roles: GeneralMember_roles[] | null;
   duties: GeneralMember_duties[] | null;
   preferences: GeneralMember_preferences[] | null;
-  endorsements: GeneralMember_endorsements[] | null;
+  endorsements: GeneralMember_endorsements[];
 }

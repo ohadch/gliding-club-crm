@@ -9,6 +9,12 @@ import { ShiftType, MemberAssignmentPreferenceType } from "./../../../../types/g
 // GraphQL query operation: GetGliders
 // ====================================================
 
+export interface GetGliders_gliders_owners_gliderReservationQueueSpacingGroup {
+  __typename: "GliderReservationQueueSpacingGroup";
+  id: number;
+  name: string;
+}
+
 export interface GetGliders_gliders_owners_roles {
   __typename: "Role";
   id: number;
@@ -66,10 +72,17 @@ export interface GetGliders_gliders_owners {
   firstName: string;
   lastName: string;
   fullName: string;
+  gliderReservationQueueSpacingGroup: GetGliders_gliders_owners_gliderReservationQueueSpacingGroup;
   roles: GetGliders_gliders_owners_roles[] | null;
   duties: GetGliders_gliders_owners_duties[] | null;
   preferences: GetGliders_gliders_owners_preferences[] | null;
-  endorsements: GetGliders_gliders_owners_endorsements[] | null;
+  endorsements: GetGliders_gliders_owners_endorsements[];
+}
+
+export interface GetGliders_gliders_endorsements_member_gliderReservationQueueSpacingGroup {
+  __typename: "GliderReservationQueueSpacingGroup";
+  id: number;
+  name: string;
 }
 
 export interface GetGliders_gliders_endorsements_member_roles {
@@ -129,10 +142,11 @@ export interface GetGliders_gliders_endorsements_member {
   firstName: string;
   lastName: string;
   fullName: string;
+  gliderReservationQueueSpacingGroup: GetGliders_gliders_endorsements_member_gliderReservationQueueSpacingGroup;
   roles: GetGliders_gliders_endorsements_member_roles[] | null;
   duties: GetGliders_gliders_endorsements_member_duties[] | null;
   preferences: GetGliders_gliders_endorsements_member_preferences[] | null;
-  endorsements: GetGliders_gliders_endorsements_member_endorsements[] | null;
+  endorsements: GetGliders_gliders_endorsements_member_endorsements[];
 }
 
 export interface GetGliders_gliders_endorsements {

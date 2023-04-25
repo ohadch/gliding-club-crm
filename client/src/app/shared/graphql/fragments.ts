@@ -50,6 +50,10 @@ export const GeneralMemberFragment = gql`
     firstName,
     lastName,
     fullName,
+    gliderReservationQueueSpacingGroup {
+      id,
+      name
+    }
     roles {
       id,
       name

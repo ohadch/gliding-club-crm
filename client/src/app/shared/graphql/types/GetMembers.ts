@@ -9,6 +9,12 @@ import { ShiftType, MemberAssignmentPreferenceType } from "./../../../../types/g
 // GraphQL query operation: GetMembers
 // ====================================================
 
+export interface GetMembers_members_gliderReservationQueueSpacingGroup {
+  __typename: "GliderReservationQueueSpacingGroup";
+  id: number;
+  name: string;
+}
+
 export interface GetMembers_members_roles {
   __typename: "Role";
   id: number;
@@ -66,10 +72,11 @@ export interface GetMembers_members {
   firstName: string;
   lastName: string;
   fullName: string;
+  gliderReservationQueueSpacingGroup: GetMembers_members_gliderReservationQueueSpacingGroup;
   roles: GetMembers_members_roles[] | null;
   duties: GetMembers_members_duties[] | null;
   preferences: GetMembers_members_preferences[] | null;
-  endorsements: GetMembers_members_endorsements[] | null;
+  endorsements: GetMembers_members_endorsements[];
 }
 
 export interface GetMembers {

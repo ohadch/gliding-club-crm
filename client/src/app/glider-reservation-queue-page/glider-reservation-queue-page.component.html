@@ -1,1 +1,10 @@
-bg
+<div class="glider-reservation-queue-page">
+  <h1>Spacing Groups</h1>
+  <div class="glider-reservation-queue-spacing-groups">
+    <app-spacing-group-members-list
+      *ngFor="let spacingGroup of spacingGroups"
+      [name]="spacingGroup.name"
+      [members]="spacingGroup.members"
+    ></app-spacing-group-members-list>
+  </div>
+</div>

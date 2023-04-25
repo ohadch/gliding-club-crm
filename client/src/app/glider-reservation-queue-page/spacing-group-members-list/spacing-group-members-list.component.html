@@ -1,0 +1,14 @@
+<mat-card class="container">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>{{ name }}</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <mat-action-list>
+      <button mat-list-item *ngFor="let member of members">
+        <p mat-line>{{ member.fullName }}</p>
+      </button>
+    </mat-action-list>
+  </mat-card-content>
+</mat-card>
