@@ -1,9 +1,15 @@
 import {MemberAssignmentPreferenceType, ShiftType} from "../../@types/enums";
-import {createAction, createGlider, createMember, createMemberAssignmentPreference, createRole,} from "./seed.utils";
+import {
+    createAction,
+    createGlider,
+    createGliderReservationQueueCycle,
+    createMember,
+    createMemberAssignmentPreference,
+    createRole,
+} from "./seed.utils";
 import {Action} from "../../models/Action";
 import {getLogger} from "../logging";
 import {getDatesRange} from "../utils/date.utils";
-import {GlidersQueueService} from "../gliders-queue";
 
 const logger = getLogger("seed");
 
@@ -11,10 +17,10 @@ export async function createSeedData() {
     logger.info("Creating seed data");
 
     // Get existing actions
-    const actions = await Action.find();
+    const existingActions = await Action.find();
 
     // If more than 1 action exists, do not create seed data
-    if (actions.length > 1) {
+    if (existingActions.length > 1) {
         logger.info("Seed data already exists, not creating seed data");
         return;
     }
@@ -31,9 +37,11 @@ export async function createSeedData() {
     const responsibleCfiRole = await createRole({name: "Responsible CFI"});
     const maintenanceRole = await createRole({name: "Maintenance"});
 
+    const actions: Action[] = [];
+
     // For every action date, create an action and 2 shifts
     for await (const actionDate of actionDates) {
-        await createAction({
+        const action = await createAction({
             date: actionDate,
             shifts: [
                 {
@@ -76,6 +84,8 @@ export async function createSeedData() {
                 },
             ]
         });
+
+        actions.push(action);
     }
 
     // Create Field Responsibles
@@ -237,6 +247,24 @@ export async function createSeedData() {
             allMembers[21],
         ],
     });
+
+    // Create glider reservation queue
+    const actionsWithIndices = actions.map((action, i) => ({ action, i }));
+    await createGliderReservationQueueCycle(
+        "Cycle 1",
+        5,
+        actionsWithIndices.filter(({ i }) => i % 3 === 0).map(({ action }) => action),
+    )
+    await createGliderReservationQueueCycle(
+        "Cycle 2",
+        5,
+        actionsWithIndices.filter(({ i }) => i % 3 === 1).map(({ action }) => action),
+    )
+    await createGliderReservationQueueCycle(
+        "Cycle 3",
+        5,
+        actionsWithIndices.filter(({ i }) => i % 3 === 2).map(({ action }) => action),
+    )
 
     logger.info("Finished creating seed data");
 }

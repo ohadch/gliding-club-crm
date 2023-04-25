@@ -11,6 +11,7 @@ import {getLogger} from "../logging";
 import {Duty} from "../../models/Duty";
 import {MemberPreference} from "../../models/MemberPreference";
 import {Glider} from "../../models/Glider";
+import {GliderReservationQueueCycle} from "../../models/GliderReservationQueueCycle";
 
 const logger = getLogger("seed-utils");
 
@@ -104,12 +105,30 @@ export async function createMemberAssignmentPreference(options: ICreateMemberPre
 
 
 export async function createGlider(options: ICreateGliderOptions): Promise<Glider> {
-  logger.info(`Creating glider ${options.callSign}`);
-  const glider = new Glider();
+    logger.info(`Creating glider ${options.callSign}`);
+    const glider = new Glider();
 
-  glider.callSign = options.callSign;
-  glider.owners = options.owners;
-  await glider.save();
+    glider.callSign = options.callSign;
+    glider.owners = options.owners;
+    await glider.save();
 
-  return glider;
+    return glider;
+}
+
+
+export async function createGliderReservationQueueCycle(
+    name: string,
+    memberRankDifferenceBetweenConsecutiveActions: number,
+    actions: Action[],
+) {
+    logger.info(`Creating glider reservation queue cycle '${name}'`);
+    const gliderReservationQueueCycle = new GliderReservationQueueCycle();
+
+    gliderReservationQueueCycle.name = name;
+    gliderReservationQueueCycle.memberRankDifferenceBetweenConsecutiveActions = 1;
+    gliderReservationQueueCycle.actions = actions;
+
+    await gliderReservationQueueCycle.save();
+
+    return gliderReservationQueueCycle;
 }
