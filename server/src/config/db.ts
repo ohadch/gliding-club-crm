@@ -10,6 +10,8 @@ import { MemberPreference } from "../models/MemberPreference";
 import { Role } from "../models/Role";
 import { Shift } from "../models/Shift";
 import { GliderReservationQueueSpacingGroup } from "../models/GliderReservationQueueSpacingGroup";
+import { GliderReservationQueueCycleMemberNumber } from "../models/GliderReservationQueueCycleMemberNumber";
+import { GliderReservationQueueCycle } from "../models/GliderReservationQueueCycle";
 
 export const databaseConnectionFactory = () => createConnection({
   type: DB_TYPE,
@@ -32,7 +34,9 @@ export const RESOURCES = [
   MemberPreference,
   Role,
   Shift,
-  GliderReservationQueueSpacingGroup
+  GliderReservationQueueCycle,
+  GliderReservationQueueSpacingGroup,
+  GliderReservationQueueCycleMemberNumber
 ];
 
 export async function setUpConnectionForAllResources() {

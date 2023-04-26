@@ -4,7 +4,7 @@ import {
 } from 'typeorm';
 import { Field, Int, ObjectType } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
-import { Action } from "../Action";
+import { GliderReservationQueueCycleMemberNumber } from "../GliderReservationQueueCycleMemberNumber";
 
 @Entity()
 @ObjectType()
@@ -19,11 +19,7 @@ export class GliderReservationQueueCycle extends BaseModel {
     @Column({ unique: true })
     name: string;
 
-    @Field(() => [Action])
-    @OneToMany(() => Action, (action) => action.gliderReservationQueueCycle)
-    actions: Action[];
-
-    @Field(() => Int)
-    @Column()
-    memberRankDifferenceBetweenConsecutiveActions: number;
+    @Field(() => [GliderReservationQueueCycleMemberNumber])
+    @OneToMany(() => GliderReservationQueueCycleMemberNumber, (member) => member.gliderReservationQueueCycle)
+    membersNumbers: GliderReservationQueueCycleMemberNumber[];
 }
