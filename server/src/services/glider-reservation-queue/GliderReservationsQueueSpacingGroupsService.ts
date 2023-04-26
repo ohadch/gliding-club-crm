@@ -10,7 +10,7 @@ export class GliderReservationsQueueSpacingGroupsService {
      * @param members - The members to determine spacing groups for.
      * @returns The spacing groups for the given members.
      */
-  public static determineSpacingGroupsByMembers(members: Member[]): {[key: string]: Member[]} {
+  private static determineSpacingGroupsByMembers(members: Member[]): {[key: string]: Member[]} {
     const highestGliderEndorsementComplexityToMembersMap: {[key: string]: Member[]} = {};
 
     for (const member of members) {
@@ -31,7 +31,7 @@ export class GliderReservationsQueueSpacingGroupsService {
      * Returns the spacing groups for all members.
      * @returns The spacing groups for all members.
      */
-  public static async determineSpacingGroups(): Promise<{[key: string]: Member[]}> {
+  private static async determineSpacingGroups(): Promise<{[key: string]: Member[]}> {
     const members = await Member.find({
       relations: MEMBER_RELATIONS,
     });
@@ -44,7 +44,7 @@ export class GliderReservationsQueueSpacingGroupsService {
      * @param spacingGroupsSpec - The spec to generate spacing groups by.
      * @returns The generated spacing groups.
      */
-  public static async generateSpacingGroupsBySpec(spacingGroupsSpec: {[key: string]: Member[]}): Promise<GliderReservationQueueSpacingGroup[]> {
+  private static async generateSpacingGroupsBySpec(spacingGroupsSpec: {[key: string]: Member[]}): Promise<GliderReservationQueueSpacingGroup[]> {
     const spacingGroups: GliderReservationQueueSpacingGroup[] = [];
 
     for await (const [name, members] of Object.entries(spacingGroupsSpec)) {
