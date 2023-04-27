@@ -6,6 +6,10 @@ import { Field, Int, ObjectType } from 'type-graphql';
 import BaseModel from "../__abstract__/BaseModel";
 import { Member } from "../Member";
 
+export const GLIDER_RESERVATION_QUEUE_SPACING_GROUP_RELATIONS = [
+  'members',
+];
+
 @Entity()
 @ObjectType()
 export class GliderReservationQueueSpacingGroup extends BaseModel {

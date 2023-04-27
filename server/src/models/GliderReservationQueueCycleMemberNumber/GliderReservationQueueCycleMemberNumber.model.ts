@@ -23,6 +23,10 @@ export class GliderReservationQueueCycleMemberNumber extends BaseModel {
 
     @Field(() => Int)
     @Column()
+    number: number;
+
+    @Field(() => Int)
+    @Column()
     memberId: number;
 
     @Field(() => Member, { nullable: true })

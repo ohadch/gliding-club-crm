@@ -2,7 +2,6 @@ import { MemberAssignmentPreferenceType, ShiftType } from "../../@types/enums";
 import {
   createAction,
   createGlider,
-  createGliderReservationQueueCycle,
   createMember,
   createMemberAssignmentPreference,
   createRole,
@@ -38,11 +37,9 @@ export async function createSeedData() {
   const responsibleCfiRole = await createRole({ name: "Responsible CFI" });
   const maintenanceRole = await createRole({ name: "Maintenance" });
 
-  const actions: Action[] = [];
-
   // For every action date, create an action and 2 shifts
   for await (const actionDate of actionDates) {
-    const action = await createAction({
+    await createAction({
       date: actionDate,
       shifts: [
         {
@@ -85,8 +82,6 @@ export async function createSeedData() {
         },
       ]
     });
-
-    actions.push(action);
   }
 
   // Create Field Responsibles
@@ -261,24 +256,6 @@ export async function createSeedData() {
     endorsedMembers: allMembers.filter((member, i) => i % 3 === 0),
     complexity: 3
   });
-
-  // Create glider reservation queue
-  const actionsWithIndices = actions.map((action, i) => ({ action, i }));
-  await createGliderReservationQueueCycle(
-    "Cycle 1",
-    5,
-    actionsWithIndices.filter(({ i }) => i % 3 === 0).map(({ action }) => action),
-  );
-  await createGliderReservationQueueCycle(
-    "Cycle 2",
-    5,
-    actionsWithIndices.filter(({ i }) => i % 3 === 1).map(({ action }) => action),
-  );
-  await createGliderReservationQueueCycle(
-    "Cycle 3",
-    5,
-    actionsWithIndices.filter(({ i }) => i % 3 === 2).map(({ action }) => action),
-  );
 
   // Generate spacing groups
   await GliderReservationsQueueSpacingGroupsService.generateSpacingGroups();

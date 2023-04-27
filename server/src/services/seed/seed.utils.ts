@@ -125,20 +125,3 @@ export async function createGlider(options: ICreateGliderOptions): Promise<Glide
 
   return glider;
 }
-
-export async function createGliderReservationQueueCycle(
-  name: string,
-  memberRankDifferenceBetweenConsecutiveActions: number,
-  actions: Action[],
-) {
-  logger.info(`Creating glider reservation queue cycle '${name}'`);
-  const gliderReservationQueueCycle = new GliderReservationQueueCycle();
-
-  gliderReservationQueueCycle.name = name;
-  gliderReservationQueueCycle.memberRankDifferenceBetweenConsecutiveActions = 1;
-  gliderReservationQueueCycle.actions = actions;
-
-  await gliderReservationQueueCycle.save();
-
-  return gliderReservationQueueCycle;
-}
