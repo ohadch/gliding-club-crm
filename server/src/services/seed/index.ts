@@ -18,8 +18,11 @@ export async function createSeedData() {
         return;
     }
 
+    const currentYear = new Date().getFullYear();
+
     // Create an array of all the Fridays and Saturdays in the provided date range
-    const actionDates: Date[] = getDatesRange(new Date("2023-01-01"), new Date("2023-06-30"))
+    // const actionDates: Date[] = getDatesRange(new Date("2023-01-01"), new Date("2023-06-30"))
+    const actionDates: Date[] = getDatesRange(new Date(`${currentYear}-01-01`), new Date(`${currentYear}-06-30`))
         .filter((date) => date.getDay() === 5 || date.getDay() === 6);
 
     logger.info(`Creating ${actionDates.length} actions`);

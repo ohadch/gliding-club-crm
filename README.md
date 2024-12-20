@@ -30,17 +30,22 @@ make install-dev
 4. Select `File Patterns`
 5. In `Test File Patterns`: `{,!(node_modules)/**}/*.test.ts` [Why excluding node modules is necessary](https://stackoverflow.com/questions/67374553/syntaxerror-cannot-use-import-statement-outside-a-module-error-is-thrown-while/67820331#67820331)
 
+## Development using Docker
 
-## Other forms of deployment
-
-### Docker
+To run the project using docker, run the following command:
 
 ```shell
-docker-compose up -d
+docker compose -f docker-compose.dev.yml up -d
+```
 
-# Or
+Then, you may attach to the backends debugger by attaching to `localhost:9229`.
 
-make up
+## Deployment
+
+To deploy the project, run the following command:
+
+```shell
+docker-compose -f docker-compose.prod.yml up -d
 ```
 
 ### Kubernetes (local)
