@@ -31,7 +31,6 @@ services:
       - CREATE_SEED_DATA=true
     ports:
       - "4001:4000"
-    command: "yarn start"
     depends_on:
       db:
         condition: service_healthy

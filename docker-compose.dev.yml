@@ -9,11 +9,15 @@ services:
       - "3002:4200"
   backend:
     extends:
-      file: docker-compose.prod.yml
+      file: docker-compose.common.yml
       service: backend
+    build:
+      target: development
+    ports:
+      - "9229:9229"
   db:
     extends:
-      file: docker-compose.prod.yml
+      file: docker-compose.common.yml
       service: db
 
 volumes:
