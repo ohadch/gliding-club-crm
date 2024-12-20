@@ -1,6 +1,8 @@
 services:
   frontend:
-    build: client
+    build:
+      context: client
+      dockerfile: Dockerfile
     image: localhost:5001/gliding-club-crm-client
     healthcheck:
       test:
@@ -13,11 +15,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-    ports:
-      - "3002:3000"
-    depends_on:
-      backend:
-        condition: service_healthy
   backend:
     build: server
     image: localhost:5001/gliding-club-crm-server

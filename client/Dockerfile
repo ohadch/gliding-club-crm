@@ -1,4 +1,4 @@
-FROM node:16.15-alpine
+FROM node:16.15-alpine AS base
 
 # Add a work directory
 WORKDIR /app
@@ -16,11 +16,15 @@ RUN yarn install --network-timeout 1000000
 # Copy app files
 COPY . .
 
+FROM base AS development
+
+# Start the app
+CMD [ "yarn", "start" ]
+
+FROM base AS build
+
 # Build app
 RUN yarn build
-
-# Expose port
-EXPOSE 3000
 
 # Start the app
 CMD [ "yarn", "serve:build" ]

@@ -1,0 +1,18 @@
+services:
+  frontend:
+    extends:
+      file: docker-compose.common.yml
+      service: frontend
+    build:
+      target: build
+  backend:
+    extends:
+      file: docker-compose.common.yml
+      service: backend
+  db:
+    extends:
+      file: docker-compose.common.yml
+      service: db
+
+volumes:
+  db_data:

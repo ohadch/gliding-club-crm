@@ -1,0 +1,20 @@
+services:
+  frontend:
+    extends:
+      service: frontend
+      file: docker-compose.common.yml
+    build:
+      target: development
+    ports:
+      - "3002:4200"
+  backend:
+    extends:
+      file: docker-compose.prod.yml
+      service: backend
+  db:
+    extends:
+      file: docker-compose.prod.yml
+      service: db
+
+volumes:
+  db_data:
